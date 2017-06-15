@@ -4,6 +4,7 @@
 '''
 6/15/2017 shawn
 rewrite reference code 
+notice: pay attention to the file name
 '''
 def load_blocked():
     global words

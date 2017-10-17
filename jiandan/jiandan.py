@@ -3,14 +3,17 @@
 '''
 问题：10/16/2017 保存的图片gif无法打开,jpg是条纹的？ bs时候有误？编码问题？
 解决：10/17/2017 编码问题：保存时候用了"w"，应该用"wb"
+
+问题： 10/17/2017 如果不在程序中自动建立保存图片的文件夹pic，则迁移性差。
 '''
 import requests
 import bs4
 import thread
+import os
 
 #爬虫抓取函数
-def spider(page,url_list):
-    path = "pics/" # this folder needs to be created in advance
+def spider(page,url_list,path):
+
     for url in url_list:
         response = requests.get("http:"+ url)
         pic_name = url.split("/")[-1]
@@ -24,9 +27,14 @@ def spider(page,url_list):
 #设置边界：最小和最大页数
 min_page = 1
 max_page = 141
-print "min_page is "+str(min_page)+";max_page is "+str(max_page)
-min_page = input("请输入起始页：")
-max_page = input("请输入终止页：")
+print "min_page is "+str(min_page)+" ;max_page is "+str(max_page)
+min_page = input("Please enter the starting page: ")
+max_page = input("Please enter the ending page：")
+
+# create a new folder pics/ for storing pics
+path="pics/"
+if not os.path.exists(path):
+    os.makedirs(path)
 
 # 顺序打开页面
 for page in range(min_page, max_page+1):
@@ -40,7 +48,7 @@ for page in range(min_page, max_page+1):
     url_list= [l.get("href") for l in pic_list]
 
     #使用多线程，以及调用爬虫函数
-    thread.start_new_thread(spider, (page, url_list))
+    thread.start_new_thread(spider, (page, url_list,path))
 
 while 1:
     pass

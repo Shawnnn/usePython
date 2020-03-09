@@ -38,8 +38,9 @@ while quit not in ['q','e']:
     # count how mnay times of game you have played
     game_times += 1
 
-    result = f"user:\t{name}\nhas played {game_times} times in this game; \nthe fastest is {min(times_list)} round; \naverage {sum_round/game_times:.2f} times to win\n-----------\n"
-    print(result)
+    #result = f"user:\t{name}\nhas played {game_times} times in this game; \nthe fastest is {min(times_list)} round; \naverage {sum_round/game_times:.2f} times to win\n-----------\n"
+    result = f"{name} " + f"{game_times} " + f"{min(times_list)} " + f"{sum_round/game_times:.2f}\n"
+    print(f"user:\t{name}\nhas played {game_times} times in this game; \nthe fastest is {min(times_list)} round; \naverage {sum_round/game_times:.2f} times to win\n-----------\n")
 
     # exit the game or not?
     quit = input("Do you want to quit the game? click 'q', 'e' to exit the game!\n")

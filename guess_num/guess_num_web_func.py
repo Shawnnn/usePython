@@ -89,14 +89,16 @@ def write_records(path, records): #写入记录
     print("writing done!")
     return None
 
-path = './game_many_user.txt'
+if __name__ = "__main__":
+    path = './game_many_user.txt'
 
-records, name, game_times, times_list, sum_round = record_init(path)
+    records, name, game_times, times_list, sum_round = record_init(path)
 
-name, game_times, times_list, sum_round = play_game(name, game_times, times_list, sum_round)
+    name, game_times, times_list, sum_round = play_game(name, game_times, times_list, sum_round)
 
-records[name] = [f"{game_times}", f"{min(times_list)}", f"{sum_round}\n"]
+    records[name] = [f"{game_times}", f"{min(times_list)}", f"{sum_round}\n"]
 
-print("see new records!:\t",records)
+    print("see new records!:\t",records)
 
-write_records(path, records)
+    write_records(path, records)
+    
